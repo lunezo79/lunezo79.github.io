@@ -54,6 +54,23 @@
     text-decoration: underline;
   }
 
+  nav a.active {
+    opacity: 1;
+    position: relative;
+  }
+
+  nav a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -17px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+  }
+
   .profile-pic {
     width: 130px;
     height: 130px;
@@ -195,9 +212,9 @@
 <body>
 
   <nav>
-    <a onclick="showSection('all'); return false;">All</a>
-    <a onclick="showSection('projects'); return false;">Projects</a>
-    <a onclick="showSection('skills'); return false;">Skills</a>
+    <a id="nav-all" onclick="showSection('all'); return false;">All</a>
+    <a id="nav-projects" onclick="showSection('projects'); return false;">Projects</a>
+    <a id="nav-skills" onclick="showSection('skills'); return false;">Skills</a>
   </nav>
 
   <div class="box" id="status-card">
@@ -272,21 +289,34 @@
       const projectsTitle = document.getElementById('projects');
       const skillsTitle = document.getElementById('skills');
 
+      const navAll = document.getElementById('nav-all');
+      const navProjects = document.getElementById('nav-projects');
+      const navSkills = document.getElementById('nav-skills');
+
+      navAll.classList.remove('active');
+      navProjects.classList.remove('active');
+      navSkills.classList.remove('active');
+
       if (section === 'projects') {
         projects.style.display = 'block';
         skills.style.display = 'none';
         projectsTitle.textContent = 'All Projects';
+        navProjects.classList.add('active');
       } else if (section === 'skills') {
         projects.style.display = 'none';
         skills.style.display = 'block';
         skillsTitle.textContent = 'All Skills';
+        navSkills.classList.add('active');
       } else {
         projects.style.display = 'block';
         skills.style.display = 'block';
         projectsTitle.textContent = 'Projects';
         skillsTitle.textContent = 'Skills';
+        navAll.classList.add('active');
       }
     }
+
+    showSection('all');
 
     const DISCORD_ID = "762121502698242054";
 
