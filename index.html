@@ -24,6 +24,24 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  body.loaded {
+    opacity: 1;
+  }
+
+  body.fade-out {
+    opacity: 0;
+  }
+
+  #projects-section, #skills-section {
+    transition: opacity 0.35s ease;
+  }
+
+  #projects-section.fading, #skills-section.fading {
+    opacity: 0;
   }
 
   nav {
@@ -297,26 +315,49 @@
       navProjects.classList.remove('active');
       navSkills.classList.remove('active');
 
-      if (section === 'projects') {
-        projects.style.display = 'block';
-        skills.style.display = 'none';
-        projectsTitle.textContent = 'All Projects';
-        navProjects.classList.add('active');
-      } else if (section === 'skills') {
-        projects.style.display = 'none';
-        skills.style.display = 'block';
-        skillsTitle.textContent = 'All Skills';
-        navSkills.classList.add('active');
-      } else {
-        projects.style.display = 'block';
-        skills.style.display = 'block';
-        projectsTitle.textContent = 'Projects';
-        skillsTitle.textContent = 'Skills';
-        navAll.classList.add('active');
-      }
+      projects.classList.add('fading');
+      skills.classList.add('fading');
+
+      setTimeout(() => {
+        if (section === 'projects') {
+          projects.style.display = 'block';
+          skills.style.display = 'none';
+          projectsTitle.textContent = 'All Projects';
+          navProjects.classList.add('active');
+        } else if (section === 'skills') {
+          projects.style.display = 'none';
+          skills.style.display = 'block';
+          skillsTitle.textContent = 'All Skills';
+          navSkills.classList.add('active');
+        } else {
+          projects.style.display = 'block';
+          skills.style.display = 'block';
+          projectsTitle.textContent = 'Projects';
+          skillsTitle.textContent = 'Skills';
+          navAll.classList.add('active');
+        }
+
+        requestAnimationFrame(() => {
+          projects.classList.remove('fading');
+          skills.classList.remove('fading');
+        });
+      }, 200);
     }
 
     showSection('all');
+
+    document.body.classList.add('loaded');
+
+    document.querySelectorAll('.box-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const destination = this.getAttribute('href');
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+          window.location.href = destination;
+        }, 350);
+      });
+    });
 
     const DISCORD_ID = "762121502698242054";
 
