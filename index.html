@@ -46,6 +46,7 @@
     letter-spacing: 0.5px;
     opacity: 0.8;
     transition: opacity 0.25s ease;
+    cursor: pointer;
   }
 
   nav a:hover {
@@ -194,8 +195,9 @@
 <body>
 
   <nav>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
+    <a onclick="showSection('all'); return false;">All</a>
+    <a onclick="showSection('projects'); return false;">Projects</a>
+    <a onclick="showSection('skills'); return false;">Skills</a>
   </nav>
 
   <div class="box" id="status-card">
@@ -211,55 +213,75 @@
 
   <div class="container">
 
-    <div class="section-title" id="projects">Projects</div>
-    <div class="grid">
+    <div id="projects-section">
+      <div class="section-title" id="projects">Projects</div>
+      <div class="grid">
 
-      <a href="Test1.html" class="box-link">
-        <div class="box">
-          <h2>Test1</h2>
-          <p>Short description of what this project is, what you built, and what tools/systems you used.</p>
-        </div>
-      </a>
+        <a href="Test1.html" class="box-link">
+          <div class="box">
+            <h2>Test1</h2>
+            <p>Short description of what this project is, what you built, and what tools/systems you used.</p>
+          </div>
+        </a>
 
-      <a href="Test2.html" class="box-link">
-        <div class="box">
-          <h2>Test2</h2>
-          <p>Short description of what this project is, what you built, and what tools/systems you used.</p>
-        </div>
-      </a>
+        <a href="Test2.html" class="box-link">
+          <div class="box">
+            <h2>Test2</h2>
+            <p>Short description of what this project is, what you built, and what tools/systems you used.</p>
+          </div>
+        </a>
 
-      <a href="Test3.html" class="box-link">
-        <div class="box">
-          <h2>Test3</h2>
-          <p>Short description of what this project is, what you built, and what tools/systems you used.</p>
-        </div>
-      </a>
+        <a href="Test3.html" class="box-link">
+          <div class="box">
+            <h2>Test3</h2>
+            <p>Short description of what this project is, what you built, and what tools/systems you used.</p>
+          </div>
+        </a>
 
+      </div>
     </div>
 
-    <div class="section-title" id="skills">Skills</div>
-    <div class="grid">
+    <div id="skills-section">
+      <div class="section-title" id="skills">Skills</div>
+      <div class="grid">
 
-      <div class="box">
-        <h2>Modeling</h2>
-        <p>High blender knowladge, prop design, low-poly detailed assets.</p>
+        <div class="box">
+          <h2>Modeling</h2>
+          <p>High blender knowladge, prop design, low-poly detailed assets.</p>
+        </div>
+
+        <div class="box">
+          <h2>Building</h2>
+          <p>Terrain, environment design, lighting, optimization.</p>
+        </div>
+
+        <div class="box">
+          <h2>UI</h2>
+          <p>Custom GUI design, menus, HUDs.</p>
+        </div>
+
       </div>
-
-      <div class="box">
-        <h2>Building</h2>
-        <p>Terrain, environment design, lighting, optimization.</p>
-      </div>
-
-      <div class="box">
-        <h2>UI</h2>
-        <p>Custom GUI design, menus, HUDs.</p>
-      </div>
-
     </div>
 
   </div>
 
   <script>
+    function showSection(section) {
+      const projects = document.getElementById('projects-section');
+      const skills = document.getElementById('skills-section');
+
+      if (section === 'projects') {
+        projects.style.display = 'block';
+        skills.style.display = 'none';
+      } else if (section === 'skills') {
+        projects.style.display = 'none';
+        skills.style.display = 'block';
+      } else {
+        projects.style.display = 'block';
+        skills.style.display = 'block';
+      }
+    }
+
     const DISCORD_ID = "762121502698242054";
 
     async function updateStatus() {
