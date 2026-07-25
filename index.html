@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lunezo79 | Roblox Studio Portfolio</title>
 <style>
   * {
@@ -225,6 +226,80 @@
   .dot-idle { background-color: #f0b232; box-shadow: 0 0 8px #f0b232; }
   .dot-dnd { background-color: #f23f43; box-shadow: 0 0 8px #f23f43; }
   .dot-offline { background-color: #80848e; box-shadow: 0 0 8px #80848e; }
+
+  /* Touch devices can't hover, so give a tap-feedback equivalent */
+  @media (hover: none) {
+    .box:active {
+      transform: translateY(-4px) scale(1.02);
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 10px 20px rgba(0,0,0,0.5);
+    }
+  }
+
+  @media (max-width: 640px) {
+    nav {
+      gap: 6px;
+      padding: 10px 8px;
+      justify-content: space-evenly;
+    }
+
+    nav a {
+      font-size: 0.85rem;
+      padding: 10px 8px;
+      flex: 1;
+      text-align: center;
+    }
+
+    nav a.active::after {
+      bottom: -11px;
+    }
+
+    /* Un-fix the status card on mobile so it flows in the page
+       instead of floating over the header/profile pic */
+    #status-card {
+      position: static;
+      max-width: none;
+      width: calc(100% - 30px);
+      margin: 15px auto 0;
+    }
+
+    header {
+      padding: 25px 15px 20px;
+    }
+
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+    }
+
+    header h1 {
+      font-size: 1.7rem;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      padding: 0 10px;
+    }
+
+    .container {
+      padding: 15px;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 35px;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      margin: 28px 0 16px;
+    }
+
+    .box {
+      padding: 18px;
+    }
+  }
 </style>
 </head>
 <body>
