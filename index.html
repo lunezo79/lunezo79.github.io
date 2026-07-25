@@ -309,11 +309,7 @@
           text.textContent = "Unavailable";
         }
 
-        if (data.data.activities && data.data.activities.length > 0) {
-          activity.textContent = data.data.activities[0].name;
-        } else {
-          activity.textContent = "Not doing anything right now.";
-        }
+        activity.textContent = "Real-time status";
       } catch (err) {
         document.getElementById("status-text").textContent = "Unavailable";
       }
