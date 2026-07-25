@@ -269,16 +269,22 @@
     function showSection(section) {
       const projects = document.getElementById('projects-section');
       const skills = document.getElementById('skills-section');
+      const projectsTitle = document.getElementById('projects');
+      const skillsTitle = document.getElementById('skills');
 
       if (section === 'projects') {
         projects.style.display = 'block';
         skills.style.display = 'none';
+        projectsTitle.textContent = 'All Projects';
       } else if (section === 'skills') {
         projects.style.display = 'none';
         skills.style.display = 'block';
+        skillsTitle.textContent = 'All Skills';
       } else {
         projects.style.display = 'block';
         skills.style.display = 'block';
+        projectsTitle.textContent = 'Projects';
+        skillsTitle.textContent = 'Skills';
       }
     }
 
