@@ -37,11 +37,11 @@
     opacity: 0;
   }
 
-  #projects-section, #skills-section {
+  #projects-section, #skills-section, #extras-section {
     transition: opacity 0.35s ease;
   }
 
-  #projects-section.fading, #skills-section.fading {
+  #projects-section.fading, #skills-section.fading, #extras-section.fading {
     opacity: 0;
   }
 
@@ -307,6 +307,7 @@
     <a id="nav-all" onclick="showSection('all'); return false;">All</a>
     <a id="nav-projects" onclick="showSection('projects'); return false;">Projects</a>
     <a id="nav-skills" onclick="showSection('skills'); return false;">Skills</a>
+    <a id="nav-extras" onclick="showSection('extras'); return false;">Extras</a>
   </nav>
 
   <div class="box" id="status-card">
@@ -372,48 +373,81 @@
       </div>
     </div>
 
+    <div id="extras-section">
+      <div class="section-title" id="extras">Extras</div>
+      <div class="grid">
+
+        <div class="box">
+          <h2>About Me</h2>
+          <p>Write a few sentences here about who you are, how long you've been developing in Roblox Studio, and what you're currently looking for — freelance work, a team, or a job.</p>
+        </div>
+
+        <div class="box">
+          <h2>Currently Working On</h2>
+          <p>Describe what you're actively building right now, so visitors can see you're active and see what's coming next.</p>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
   <script>
     function showSection(section) {
       const projects = document.getElementById('projects-section');
       const skills = document.getElementById('skills-section');
+      const extras = document.getElementById('extras-section');
       const projectsTitle = document.getElementById('projects');
       const skillsTitle = document.getElementById('skills');
+      const extrasTitle = document.getElementById('extras');
 
       const navAll = document.getElementById('nav-all');
       const navProjects = document.getElementById('nav-projects');
       const navSkills = document.getElementById('nav-skills');
+      const navExtras = document.getElementById('nav-extras');
 
       navAll.classList.remove('active');
       navProjects.classList.remove('active');
       navSkills.classList.remove('active');
+      navExtras.classList.remove('active');
 
       projects.classList.add('fading');
       skills.classList.add('fading');
+      extras.classList.add('fading');
 
       setTimeout(() => {
         if (section === 'projects') {
           projects.style.display = 'block';
           skills.style.display = 'none';
+          extras.style.display = 'none';
           projectsTitle.textContent = 'All Projects';
           navProjects.classList.add('active');
         } else if (section === 'skills') {
           projects.style.display = 'none';
           skills.style.display = 'block';
+          extras.style.display = 'none';
           skillsTitle.textContent = 'All Skills';
           navSkills.classList.add('active');
+        } else if (section === 'extras') {
+          projects.style.display = 'none';
+          skills.style.display = 'none';
+          extras.style.display = 'block';
+          extrasTitle.textContent = 'All Extras';
+          navExtras.classList.add('active');
         } else {
           projects.style.display = 'block';
           skills.style.display = 'block';
+          extras.style.display = 'block';
           projectsTitle.textContent = 'Projects';
           skillsTitle.textContent = 'Skills';
+          extrasTitle.textContent = 'Extras';
           navAll.classList.add('active');
         }
 
         requestAnimationFrame(() => {
           projects.classList.remove('fading');
           skills.classList.remove('fading');
+          extras.classList.remove('fading');
         });
       }, 200);
     }
